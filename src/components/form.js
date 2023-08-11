@@ -1,12 +1,13 @@
 import React, {useState} from 'react';
 import '../App.css';
 
-function Form() {
+function Form(props) {
   const [title, setTitle] = useState('Mr');
   const [firstName, setFirstName] = useState('Mohammed');
   const [middleName, setMiddleName] = useState('Zaid');
   const [lastName, setLastName] = useState('Mansoor');
   const[productCode, setProductCode] = useState('Fttc8020');
+  console.log(props);
 
   const handleTitleChange =(e)=>{setTitle(e.target.value);}
   const handleFirstNameChange =(e)=>{setFirstName(e.target.value);}
@@ -53,9 +54,16 @@ function Form() {
   
         <label>Last Name:</label><br/>
         <input type='text' value={lastName} required onChange={(e) => {handleLastNameChange(e)}} /><br/>
-  
-        <label>Product Code:</label><br/>
-        <input type='text' value={productCode} required onChange={(e) => {handleProductCodeChange(e)}} /><br/>
+
+        <label>Produc Code:</label><br/>
+        <select onChange={(e) => {handleProductCodeChange(e)}}>
+        <option>Select a Product</option>
+          {props.products.map((option, index) => {
+             return <option key={index} disabled={!option.available}>
+              {option.code}
+           </option>
+          })}
+        </select>
   
         <input type = 'submit' value ='Submit' />
   

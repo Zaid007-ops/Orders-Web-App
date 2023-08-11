@@ -40,7 +40,7 @@ class App extends React.Component {
             </ol>
           ))
         }
-        <Form />
+        <Form products= {items} />
         </div>
     );
   }
